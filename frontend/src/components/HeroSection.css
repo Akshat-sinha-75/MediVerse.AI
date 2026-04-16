@@ -1,0 +1,165 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 24px 60px;
+  overflow: hidden;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 900px;
+  z-index: 2;
+}
+
+/* Badge — with animated border */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 22px;
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: var(--radius-full);
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: borderGlow 3s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Badge shimmer */
+.hero-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.15), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.badge-year {
+  background: var(--color-primary);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
+}
+
+.badge-text {
+  color: var(--color-text);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.badge-live {
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+/* Heading — gradient text */
+.hero-heading {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  opacity: 0;
+  background: linear-gradient(135deg, #FFFFFF 0%, #E0E0E0 30%, #FFFFFF 50%, #C4B5FD 75%, #FFFFFF 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInUp 0.8s cubic-bezier(0.4,0,0.2,1) 0.15s forwards, gradientShift 8s ease infinite 1s;
+}
+
+/* Subheading */
+.hero-subheading {
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 4px;
+  color: var(--color-text-secondary);
+  margin-bottom: 40px;
+  opacity: 0;
+}
+
+/* Buttons */
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  opacity: 0;
+}
+
+.hero-btn {
+  padding: 14px 36px;
+  font-size: 0.95rem;
+}
+
+/* Scroll indicator */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-muted);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  animation: fadeIn 1s ease 1.5s forwards;
+  opacity: 0;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(124, 58, 237, 0.5), transparent);
+  animation: breathe 2s ease-in-out infinite;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 100px 16px 40px;
+  }
+
+  .hero-heading {
+    font-size: 2.2rem;
+  }
+
+  .hero-subheading {
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .hero-btn {
+    width: 100%;
+  }
+
+  .hero-scroll-indicator {
+    display: none;
+  }
+}

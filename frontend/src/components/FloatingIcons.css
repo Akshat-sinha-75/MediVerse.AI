@@ -1,0 +1,128 @@
+.floating-icons-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-icon {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  animation: float 8s ease-in-out infinite;
+  transition: all var(--transition-slow);
+  pointer-events: auto;
+  cursor: default;
+}
+
+/* Rotating glow ring */
+.floating-icon::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  background: conic-gradient(
+    from var(--angle, 0deg),
+    transparent 0%,
+    rgba(124, 58, 237, 0.15) 25%,
+    transparent 50%,
+    rgba(59, 130, 246, 0.15) 75%,
+    transparent 100%
+  );
+  z-index: -1;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  animation: spin-slow 8s linear infinite;
+}
+
+.floating-icon:hover::before {
+  opacity: 1;
+}
+
+.floating-icon:hover {
+  box-shadow: 0 0 50px rgba(124, 58, 237, 0.35), 0 0 80px rgba(59, 130, 246, 0.15);
+  border-color: rgba(124, 58, 237, 0.35);
+  transform: scale(1.15) rotate(0deg) !important;
+  background: rgba(124, 58, 237, 0.1);
+}
+
+/* Positions — circular layout with varied rotations */
+.floating-icon-0 {
+  top: 10%;
+  left: 8%;
+  --rotate: -8deg;
+  animation-delay: 0s;
+  transform: rotate(-8deg);
+}
+
+.floating-icon-1 {
+  top: 5%;
+  right: 10%;
+  --rotate: 6deg;
+  animation-delay: 1.5s;
+  transform: rotate(6deg);
+}
+
+.floating-icon-2 {
+  top: 45%;
+  left: 3%;
+  --rotate: -4deg;
+  animation-delay: 3s;
+  transform: rotate(-4deg);
+}
+
+.floating-icon-3 {
+  top: 50%;
+  right: 4%;
+  --rotate: 8deg;
+  animation-delay: 4.5s;
+  transform: rotate(8deg);
+}
+
+.floating-icon-4 {
+  bottom: 10%;
+  left: 10%;
+  --rotate: 5deg;
+  animation-delay: 2s;
+  transform: rotate(5deg);
+}
+
+.floating-icon-5 {
+  bottom: 8%;
+  right: 12%;
+  --rotate: -7deg;
+  animation-delay: 5s;
+  transform: rotate(-7deg);
+}
+
+@media (max-width: 768px) {
+  .floating-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+
+  .floating-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .floating-icon-0 { top: 5%; left: 5%; }
+  .floating-icon-1 { top: 2%; right: 5%; }
+  .floating-icon-2 { top: 40%; left: 0%; }
+  .floating-icon-3 { top: 42%; right: 0%; }
+  .floating-icon-4 { bottom: 5%; left: 5%; }
+  .floating-icon-5 { bottom: 3%; right: 5%; }
+}
